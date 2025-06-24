@@ -1,6 +1,6 @@
 {
   "name": "viks-a",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Lightweight JavaScript library for smooth and engaging scroll animations",
   "main": "src/viks.js",
   "style": "dist/viks.min.css",
@@ -12,7 +12,7 @@
 },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Vixsry/viks-animation.git"
+    "url": "https://github.com/MeViksry/viks-animation.git"
   },
   "keywords": [
     "viks-a",
@@ -21,10 +21,10 @@
   "author": "VIKRI AHPAD TANTOWI",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Vixsry/viks-animation/issues"
+    "url": "https://github.com/MeViksry/viks-animation/issues"
   },
   "website": "https://viksanimation.my.id",
-  "homepage": "https://github.com/Vixsry/viks-animation",
+  "homepage": "https://github.com/MeViksry/viks-animation",
   "devDependencies": {
     "terser": "^5.10.0",
     "cssnano": "^7.0.6"
