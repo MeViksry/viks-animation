@@ -72,10 +72,10 @@ VIKS Animation is a modern animation library designed to make websites and appli
 
 <div align="center">
   <p>
-    <a href="mailto:viksry@proton.me">
+    <a href="mailto:kingvikvik25@gmail.com">
       <img src="https://img.shields.io/badge/Email-aqua?style=for-the-badge&logo=gmail&logoColor=black" alt="Email">
     </a>
-    <a href="https://www.linkedin.com/in/viksry">
+    <a href="www.linkedin.com/in/MeViksry">
       <img src="https://img.shields.io/badge/LinkedIn-black?style=for-the-badge&logo=linkedin&logoColor=aqua" alt="LinkedIn">
     </a>
     <a href="https://www.instagram.com/meviksry">
