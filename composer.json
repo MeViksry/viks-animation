@@ -1,5 +1,5 @@
 {
-  "name": "Vixsry/viks-a",
+  "name": "MeViksry/viks-a",
   "description": "Bring Your Website to Life with Animations.",
   "keywords": [
     "css",
@@ -13,22 +13,18 @@
     "viks-a",
     "web"
   ],
-  "homepage": "https://viksanimation.my.id",
+  "homepage": "https://github.com/MeViksry/viks-animation",
   "authors": [
     {
       "name": "VIKRI AHPAD TANTOWI",
-      "email": "viksanimation@gmail.com"
-    },
-    {
-      "name": "VIKS DEV",
-      "email": "viksdev@gmail.com"
+      "email": "kingvikvik25@gmail.com"
     }
   ],
   "support": {
-    "issues": "https://github.com/Vixsry/viks-animation/issues"
+    "issues": "https://github.com/MeViksry/viks-animation/issues"
   },
   "license": "MIT",
   "replace": {
-    "viksdev/viks-a": "self.version"
+    "MeViksry/viks-a": "self.version"
   }
 }
