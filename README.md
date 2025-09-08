@@ -1,5 +1,4 @@
 <div align="center">
-  <img src="assets/viks-swip-logo.png" alt="VIKS SWIP Logo" width="250"/>
 
   <h1>VIKS ANIMATION</h1>
   
