@@ -206,7 +206,7 @@ Install the Viks Animation source Sass and JavaScript files via npm, YARN, or Co
 npm install viks-a --save
 
 # YARN
-yarn add viks-a
+yarn add viks-a --save
 ```
 
 <hr style="height: 3px; background: linear-gradient(90deg, rgba(0,0,0,0), aqua, rgba(0,0,0,0));">
