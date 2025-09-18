@@ -586,7 +586,7 @@ class Viks3D {
   }
 }
 
-// CSS untuk animasi
+// CSS For  Animation 3D
 const style = document.createElement('style');
 style.textContent = `
   [data-viks="3D"] {
