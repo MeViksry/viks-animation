@@ -191,7 +191,7 @@ Now you can start building with Viks Animation by creating your own animations, 
 
 ```html
 <!-- Stylesheet -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/viks-a@latest/dist/viks.min.css">
+<link href="https://cdn.jsdelivr.net/npm/viks-a@latest/dist/viks.min.css" rel="stylesheet">
 
 <!-- JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/viks-a@latest/dist/viks.min.js"></script>
