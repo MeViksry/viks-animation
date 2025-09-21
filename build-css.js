@@ -12,7 +12,7 @@ const originalCode = fs.readFileSync(inputPath, 'utf8');
 // Use async function because Terser works asynchronously
 async function build() {
   try {
-    // Konfigurasi Terser untuk minifikasi dan pembuatan source map
+    // Terser configuration for minification and source map creation
     const result = await Terser.minify(originalCode, {
       sourceMap: {
         filename: path.basename(outputPath), // Nama file output: 'viks.min.js'
@@ -24,7 +24,7 @@ async function build() {
     fs.writeFileSync(outputPath, result.code);
     console.log('✅ viks.min.js successfully created!');
 
-    // Tulis source map jika ada
+    // Write source map if any
     if (result.map) {
       fs.writeFileSync(outputPath + '.map', result.map);
       console.log('✅ viks.min.js.map successfully created!');
