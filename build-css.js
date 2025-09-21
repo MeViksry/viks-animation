@@ -1,39 +1,36 @@
 const fs = require('fs');
 const path = require('path');
-const Terser = require('terser');
+const cssnano = require('cssnano');
+const postcss = require('postcss');
 
-// Define input and output paths
-const inputPath = path.join(__dirname, 'src/viks.js');
-const outputPath = path.join(__dirname, 'dist/viks.min.js');
+// Define input and output paths for cleaner structure
+const inputPath = path.join(__dirname, 'src/viks.css');
+const outputPath = path.join(__dirname, 'dist/viks.min.css');
 
-// Read the original code from the file
-const originalCode = fs.readFileSync(inputPath, 'utf8');
+// FUNCTION TO READ THE SOURCE FILE
+const inputCss = fs.readFileSync(inputPath, 'utf8');
 
-// Use async function because Terser works asynchronously
-async function build() {
-  try {
-    // Terser configuration for minification and source map creation
-    const result = await Terser.minify(originalCode, {
-      sourceMap: {
-        filename: path.basename(outputPath), // Output file name: 'viks.min.js'
-        url: path.basename(outputPath) + '.map' // Folder file name: 'viks.min.js.map'
-      }
-    });
+// CSSNANO FOR CSS MINIFICATION PROCESS
+postcss([cssnano])
+  // [UPDATED] Add 'from', 'to', and 'map' options here
+  .process(inputCss, {
+    from: inputPath,
+    to: outputPath,
+    map: {
+      inline: false, // Important: this generates a separate .map file
+    },
+  })
+  .then(result => {
+    // WRITE MINIFICATION RESULTS TO THE DIST FOLDER
+    fs.writeFileSync(outputPath, result.css);
+    console.log('✅ viks.min.css has been successfully created!');
 
-    // Write minification results to dist folder
-    fs.writeFileSync(outputPath, result.code);
-    console.log('✅ viks.min.js successfully created!');
-
-    // Write source map if any
+    // This condition is now met because we requested a source map
     if (result.map) {
-      fs.writeFileSync(outputPath + '.map', result.map);
-      console.log('✅ viks.min.js.map successfully created!');
+      fs.writeFileSync(path.join(__dirname, 'dist/viks.min.css.map'), result.map.toString());
+      console.log('✅ viks.min.css.map has been successfully created!');
     }
-
-  } catch (error) {
-    console.error('Error while minifying JS:', error);
-  }
-}
-
-// Run the build function
-build();
+  })
+  .catch(error => {
+    console.error('Error during CSS minification:', error);
+  });
