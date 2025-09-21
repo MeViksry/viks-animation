@@ -1,6 +1,6 @@
 {
   "name": "viks-a",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Lightweight JavaScript library for smooth and engaging scroll animations",
   "main": "src/viks.js",
   "style": "dist/viks.min.css",
