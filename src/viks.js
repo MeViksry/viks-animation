@@ -5,7 +5,40 @@
  * Website : https://viksanimation.my.id/
  */
 const VIKS = {
+  _callbacks: {},
+
+  // Methods for adding event listeners
+  on(eventName, handler) {
+    if (!this._callbacks[eventName]) {
+      this._callbacks[eventName] = [];
+    }
+    this._callbacks[eventName].push(handler);
+    return this; // Returns 'this' for chaining, e.g.: VIKS.on(...).on(...)
+  },
+
+  // Method to remove event listener
+  off(eventName, handler) {
+    if (this._callbacks[eventName]) {
+      // Filter array to remove specific handlers
+      this._callbacks[eventName] = this._callbacks[eventName].filter(h => h !== handler);
+    }
+    return this;
+  },
+
+  // Internal method to trigger/run events
+  _fire(eventName, data = {}) {
+    if (this._callbacks[eventName]) {
+      const eventObject = {
+        timestamp: new Date(),
+        ...data
+      };
+      this._callbacks[eventName].forEach(handler => handler(eventObject));
+    }
+  },
+  
   init(customConfig = {}) {
+    this._fire('beforeInit'); //  Triggering the 'beforeInit' event
+
     this.elements = document.querySelectorAll('[data-viks]');
     this.windowHeight = window.innerHeight;
     this.windowWidth = window.innerWidth;
@@ -79,6 +112,9 @@ const VIKS = {
     this.initObserver();
     this.initMutationObserver();
     this.initResizeObserver();
+    
+    this._fire('afterInit'); // Triggering the 'afterInit' event
+    return this; // Return 'this' so that init() can also be chained
   },
 
   applyGlobalStyles() {
@@ -115,6 +151,7 @@ const VIKS = {
       resizeTimeout = setTimeout(() => {
         this.windowHeight = window.innerHeight;
         this.windowWidth = window.innerWidth;
+        this._fire('onResize', { windowHeight: this.windowHeight, windowWidth: this.windowWidth }); // Memicu event 'onResize'
         this.elements.forEach(element => {
           this.updateElementPosition(element);
         });
@@ -131,6 +168,7 @@ const VIKS = {
       lastScroll = window.scrollY;
       if (!ticking) {
         window.requestAnimationFrame(() => {
+          this._fire('onScroll', { scrollY: lastScroll }); // Memicu event 'onScroll'
           this.elements.forEach(element => {
             this.updateElementOnScroll(element, lastScroll);
           });
@@ -256,7 +294,7 @@ const VIKS = {
      */
     element.style.transitionDuration = `${duration}ms`;
     element.style.transitionDelay = `${delay}ms`;
-    
+
     /**
      * Get easing from data attribute or config Viks Animation
      */
@@ -278,6 +316,7 @@ const VIKS = {
      */
     requestAnimationFrame(() => {
       element.classList.add(this.config.animatedClassName);
+      this._fire('afterAnimate', { element: element }); // Memicu event 'afterAnimate'
     });
 
     /**
@@ -308,6 +347,7 @@ const VIKS = {
   },
 
   removeAnimation(element) {
+    this._fire('beforeHide', { element: element }); // Memicu event 'beforeHide'
     element.classList.remove(this.config.animatedClassName);
     element.dispatchEvent(new CustomEvent('viksHidden', {
       bubbles: true,
@@ -400,6 +440,7 @@ const VIKS = {
    */
   refresh(element) {
     if (element && element.hasAttribute('data-viks')) {
+      this._fire('onRefresh', { element: element }); // Memicu event 'onRefresh'
       this.updateElementPosition(element);
       this.observer.unobserve(element);
       this.observer.observe(element);
@@ -437,6 +478,7 @@ const VIKS = {
    * Method to destroy instance Viks Animation
    */
   destroy() {
+    this._fire('onDestroy'); // Memicu event 'onDestroy'
     this.elements.forEach(element => {
       element.classList.remove(this.config.initClassName);
       element.classList.remove(this.config.animatedClassName);
@@ -451,6 +493,9 @@ const VIKS = {
     window.removeEventListener('resize', this.setupEventListeners);
     window.removeEventListener('scroll', this.setupEventListeners);
     document.removeEventListener('visibilitychange', this.setupEventListeners);
+    
+    // Kosongkan semua callback yang terdaftar
+    this._callbacks = {};
   }
 };
 
