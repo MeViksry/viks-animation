@@ -15,8 +15,8 @@ async function build() {
     // Terser configuration for minification and source map creation
     const result = await Terser.minify(originalCode, {
       sourceMap: {
-        filename: path.basename(outputPath), // Nama file output: 'viks.min.js'
-        url: path.basename(outputPath) + '.map' // Nama file map: 'viks.min.js.map'
+        filename: path.basename(outputPath), // Output file name: 'viks.min.js'
+        url: path.basename(outputPath) + '.map' // Folder file name: 'viks.min.js.map'
       }
     });
 
