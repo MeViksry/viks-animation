@@ -434,26 +434,40 @@ VIKS.init({
 <h3 align="center">📢 EVENT CALLBACK</h3>
 
 ```javascript
-// Initialize VIKS with callbacks
-VIKS.init()
-  .on('beforeInit', (event) => {
-    console.log('Before initialization:', event.timestamp);
-  })
-  .on('afterAnimate', (event) => {
-    console.log('Element animated:', event.element);
-  })
-  .on('onScroll', (event) => {
-    console.log('Scroll position:', event.scrollY);
-  });
+// Initialize VIKS and add some callbacks
+VIKS.init({
+  once: false,
+  mirror: true
+})
+.on('beforeInit', (event) => {
+  console.log('VIKS will be initialized at:', event.timestamp);
+})
+.on('afterAnimate', (event) => {
+  console.log('This element has just been animated:', event.element);
+})
+.on('onScroll', (event) => {
+  console.log('Current scroll position:', event.scrollY);
+})
+.on('beforeHide', (event) => {
+    console.log('This element is about to be hidden:', event.element);
+});
 
-// Remove specific callback
-const scrollHandler = (event) => {
-  console.log('Scroll:', event.scrollY);
+// You can also add and remove callbacks dynamically
+
+// 1. Store the handler in a variable
+const myScrollHandler = (event) => {
+  console.log('Custom scroll handler:', event.scrollY);
 };
 
-VIKS.on('onScroll', scrollHandler);
-// Later...
-VIKS.off('onScroll', scrollHandler);
+// 2. Add the handler
+VIKS.on('onScroll', myScrollHandler);
+
+// 3. Remove the handler later if no longer needed
+// For example, after 5 seconds
+setTimeout(() => {
+  console.log('Removing myScrollHandler...');
+  VIKS.off('onScroll', myScrollHandler);
+}, 5000);
 ```
 
 <hr style="height: 3px; background: linear-gradient(90deg, rgba(0,0,0,0), aqua, rgba(0,0,0,0));">
