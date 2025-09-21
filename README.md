@@ -1,8 +1,11 @@
 <div align="center">
-<h1>VIKS ANIMATION</h1>
+
+# VIKS ANIMATION
+
 <p>
 <img src="https://img.shields.io/badge/JavaScript-Library-aqua?style=for-the-badge&logoColor=black" alt="JavaScript Library Badge"/>
 </p>
+
 <p>
 <img src="https://img.shields.io/badge/Chrome-Latest-aqua?style=flat-square&logo=google-chrome&logoColor=white"/>
 <img src="https://img.shields.io/badge/Firefox-Latest-aqua?style=flat-square&logo=firefox&logoColor=white"/>
@@ -10,6 +13,7 @@
 <img src="https://img.shields.io/badge/Edge-Latest-aqua?style=flat-square&logo=microsoft-edge&logoColor=white"/>
 <img src="https://img.shields.io/badge/Opera-Latest-aqua?style=flat-square&logo=opera&logoColor=white"/>
 </p>
+
 <p>
 <a href="https://github.com/Vixsry/viks-animation/blob/main/LICENSE" target="_blank">
 <img src="https://img.shields.io/badge/LICENSE-MIT-black?style=flat-square" alt="License Badge">
@@ -18,53 +22,31 @@
 <img src="https://img.shields.io/badge/DOWNLOAD-1K%2FMONTH-aqua?style=flat-square" alt="Downloads Badge">
 </a>
 </p>
-<h3>✨ Lightweight JavaScript library for smooth and engaging scroll animations ✨</h3>
+
+### ✨ Lightweight JavaScript library for smooth and engaging scroll animations ✨
+
 </div>
-<hr style="height: 3px; background: linear-gradient(90deg, rgba(0,0,0,0), aqua, rgba(0,0,0,0));">
-🌟 What is VIKS Animation?
+
+---
+
+## 🌟 What is VIKS Animation?
+
 VIKS Animation is a modern animation library designed to make websites and applications more dynamic with minimal effort. It is beginner-friendly and suitable for professionals, offering both basic and advanced configuration options to cater to diverse animation needs.
+
 <div align="center">
-<table>
-<tr>
-<td align="center">
-<h3>🎯 Core Features</h3>
-<ul>
-<li>Smooth Scroll Animation</li>
-<li>Number Animation</li>
-<li>3D Transformations</li>
-<li>Multiple Easing Functions</li>
-<li>Cross-Browser Support</li>
-</ul>
-</td>
-<td align="center">
-<h3>🛠️ Technical Highlights</h3>
-<ul>
-<li>Zero Dependencies</li>
-<li>Lightweight (~12KB gzipped)</li>
-<li>High Performance</li>
-<li>Mobile-First Design</li>
-<li>Easy to Use</li>
-</ul>
-</td>
-<td align="center">
-<h3>🎨 Animation Types</h3>
-<ul>
-<li>Fade Effects</li>
-<li>Slide Animations</li>
-<li>Scale Transformations</li>
-<li>3D Rotations</li>
-<li>Custom Animations</li>
-</ul>
-</td>
-</tr>
-</table>
+
+| 🎯 Core Features | 🛠️ Technical Highlights | 🎨 Animation Types |
+|:---:|:---:|:---:|
+| • Smooth Scroll Animation<br>• Number Animation<br>• 3D Transformations<br>• Multiple Easing Functions<br>• Cross-Browser Support | • Zero Dependencies<br>• Lightweight (~12KB gzipped)<br>• High Performance<br>• Mobile-First Design<br>• Easy to Use | • Fade Effects<br>• Slide Animations<br>• Scale Transformations<br>• 3D Rotations<br>• Custom Animations |
+
 </div>
+
 <div align="center">
-<p>
+
 <a href="mailto:kingvikvik25@gmail.com">
 <img src="https://img.shields.io/badge/Email-aqua?style=for-the-badge&logo=gmail&logoColor=black" alt="Email">
 </a>
-<a href="www.linkedin.com/in/MeViksry">
+<a href="https://www.linkedin.com/in/MeViksry">
 <img src="https://img.shields.io/badge/LinkedIn-black?style=for-the-badge&logo=linkedin&logoColor=aqua" alt="LinkedIn">
 </a>
 <a href="https://www.instagram.com/meviksry">
@@ -79,12 +61,15 @@ VIKS Animation is a modern animation library designed to make websites and appli
 <a href="https://www.facebook.com/share/19aKzAtBeZ/">
 <img src="https://img.shields.io/badge/Facebook-black?style=for-the-badge&logo=facebook&logoColor=aqua" alt="Facebook">
 </a>
-</p>
+
 </div>
-<hr style="height: 3px; background: linear-gradient(90deg, rgba(0,0,0,0), aqua, rgba(0,0,0,0));">
-<h2 align="center">💫 AVAILABLE ANIMATIONS</h2>
+
+---
+
+## 💫 AVAILABLE ANIMATIONS
+
 <div align="center">
-<p>
+
 <a href="#fade-animations">
 <img src="https://img.shields.io/badge/Fade-Animations-aqua?style=flat-square&logoColor=black" alt="Fade">
 </a>
@@ -106,32 +91,47 @@ VIKS Animation is a modern animation library designed to make websites and appli
 <a href="#bounce-animation">
 <img src="https://img.shields.io/badge/Bounce-Animations-aqua?style=flat-square&logoColor=black" alt="Bounce">
 </a>
-</p>
+
 </div>
-<hr style="height: 3px; background: linear-gradient(90deg, rgba(0,0,0,0), aqua, rgba(0,0,0,0));">
-<h2 align="center">⚡ INSTALLATION</h2>
+
+---
+
+## ⚡ INSTALLATION
+
 You can add VIKS Animation to your project in several ways.
-Using a CDN (Recommended for beginners)
-Simply add the following lines to your HTML file.
+
+### Using a CDN (Recommended for beginners)
+
+Simply add the following lines to your HTML file:
+
+```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/viks-a@latest/dist/viks.min.css">
-
 <script src="https://cdn.jsdelivr.net/npm/viks-a@latest/dist/viks.min.js"></script>
+```
 
-Then, initialize the library in a <script> tag before the closing </body>:
+Then, initialize the library in a `<script>` tag before the closing `</body>`:
+
+```html
 <script>
   VIKS.init();
 </script>
+```
 
-<hr style="height:1px;border:none;color:#333;background-color:#333;">
-Using a Package Manager (NPM/Yarn)
-Install the package using your preferred manager.
+### Using a Package Manager (NPM/Yarn)
+
+Install the package using your preferred manager:
+
+```bash
 # NPM
 npm install viks-a
 
 # YARN
 yarn add viks-a
+```
 
-Then, import it into your project's main JavaScript file and initialize it.
+Then, import it into your project's main JavaScript file and initialize it:
+
+```javascript
 // Import the CSS
 import 'viks-a/dist/viks.min.css';
 
@@ -142,20 +142,26 @@ import { VIKS, VIKSNumber, Viks3D } from 'viks-a';
 VIKS.init();
 VIKSNumber.init();
 const viks3D = new Viks3D();
+```
 
-<hr style="height:1px;border:none;color:#333;background-color:#333;">
-Manual Installation
- * Download the JavaScript and CSS files:
-   * viks.css
-   * viks.js
- * Add them to your HTML as shown below:
-<!-- end list -->
+### Manual Installation
+
+1. Download the JavaScript and CSS files:
+   - viks.css
+   - viks.js
+
+2. Add them to your HTML as shown below:
+
+```html
 <link rel="stylesheet" href="path/to/viks.css">
-
 <script src="path/to/viks.js"></script>
+```
 
-<hr style="height: 3px; background: linear-gradient(90deg, rgba(0,0,0,0), aqua, rgba(0,0,0,0));">
-<h2 align="center">🚀 INITIALIZATION</h2>
+---
+
+## 🚀 INITIALIZATION
+
+```javascript
 // VIKS SCROLL ANIMATION
 VIKS.init();
 
@@ -166,9 +172,12 @@ VIKSNumber.init();
 const viks3D = new Viks3D(); 
 viks3D.addShadow();
 viks3D.addParallax(20);
+```
 
 <details>
 <summary><b>🔧 Advanced Configuration Options</b></summary>
+
+```javascript
 VIKS.init({
   thresholdTop: 0.2,         // Set threshold when element appears at the top of the viewport
   thresholdBottom: 0.2,      // Set threshold when element appears at the bottom of the viewport
@@ -188,129 +197,90 @@ VIKS.init({
   animateTop: false,         // Turn off all scroll-up animations
   animateBottom: true        // Enable scroll-down animations
 });
+```
 
 </details>
-<hr style="height: 3px; background: linear-gradient(90deg, rgba(0,0,0,0), aqua, rgba(0,0,0,0));">
-<h2 align="center">📝 USAGE</h2>
-<h3 align="center">🔄 ON SCROLL ANIMATION</h3>
-<table>
-<tr>
-<td>
-Basic Usage
-<div data-viks="fade-up">
-  VIKS CONTENT
-</div>
 
-</td>
-<td>
-Animation Based on Screen Size
-<div data-viks="fade-up"
-     data-viks-desktop="zoom-in"
-     data-viks-tablet="fade-left"
-     data-viks-mobile="fade-down">
-  VIKS CONTENT
-</div>
+---
 
-</td>
-</tr>
-<tr>
-<td>
-Control Delay
-<div data-viks="fade-up" data-viks-delay="1000">
-  VIKS CONTENT
-</div>
+## 📝 USAGE
 
-<div data-viks="fade-up delay-1000">
-  VIKS CONTENT
-</div>
+### 🔄 ON SCROLL ANIMATION
 
-</td>
-<td>
-Control Duration
-<div data-viks="fade-up" data-viks-duration="2000">
-  2 seconds duration
-</div>
+| Basic Usage | Animation Based on Screen Size |
+|:---|:---|
+| ```html<br><div data-viks="fade-up"><br>  VIKS CONTENT<br></div><br>``` | ```html<br><div data-viks="fade-up"<br>     data-viks-desktop="zoom-in"<br>     data-viks-tablet="fade-left"<br>     data-viks-mobile="fade-down"><br>  VIKS CONTENT<br></div><br>``` |
 
-<div data-viks="fade-up duration-2000">
-  2 seconds duration
-</div>
+| Control Delay | Control Duration |
+|:---|:---|
+| ```html<br><div data-viks="fade-up" data-viks-delay="1000"><br>  VIKS CONTENT<br></div><br><br><div data-viks="fade-up delay-1000"><br>  VIKS CONTENT<br></div><br>``` | ```html<br><div data-viks="fade-up" data-viks-duration="2000"><br>  2 seconds duration<br></div><br><br><div data-viks="fade-up duration-2000"><br>  2 seconds duration<br></div><br>``` |
 
-</td>
-</tr>
-<tr>
-<td>
-Disable Scroll Animations
-<div data-viks="fade-up" data-viks-animation-top="off">
-  No animation on upscroll
-</div>
+| Disable Scroll Animations | Combine Attributes |
+|:---|:---|
+| ```html<br><div data-viks="fade-up" data-viks-animation-top="off"><br>  No animation on upscroll<br></div><br><br><div data-viks="fade-up" data-viks-animation-bottom="off"><br>  No animation on downscroll<br></div><br>``` | ```html<br><div data-viks="fade-up delay-1000 duration-2000"><br>  Multiple attributes combination<br></div><br>``` |
 
-<div data-viks="fade-up" data-viks-animation-bottom="off">
-  No animation on downscroll
-</div>
+#### Custom Easing
 
-</td>
-<td>
-Combine Attributes
-<div data-viks="fade-up delay-1000 duration-2000">
-  Multiple attributes combination
-</div>
-
-</td>
-</tr>
-<tr>
-<td colspan="2">
-Custom Easing
+```html
 <div data-viks="fade-up" data-viks-easing="ease-out">
   Ease-out easing
 </div>
+```
 
 <details>
 <summary><b>Available Easing Functions</b></summary>
- * linear
- * ease
- * ease-in
- * ease-out
- * ease-in-out
- * ease-in-back
- * ease-out-back
- * ease-in-out-back
- * ease-in-sine
- * ease-out-sine
- * ease-in-out-sine
- * ease-in-quad
- * ease-out-quad
- * ease-in-out-quad
- * ease-in-cubic
- * ease-out-cubic
- * ease-in-out-cubic
- * ease-in-quart
- * ease-out-quart
- * ease-in-out-quart
- * ease-elastic
- * ease-bounce
- * ease-in-expo
- * ease-out-expo
- * ease-in-out-expo
- * ease-in-circ
- * ease-out-circ
- * ease-in-out-circ
+
+- linear
+- ease
+- ease-in
+- ease-out
+- ease-in-out
+- ease-in-back
+- ease-out-back
+- ease-in-out-back
+- ease-in-sine
+- ease-out-sine
+- ease-in-out-sine
+- ease-in-quad
+- ease-out-quad
+- ease-in-out-quad
+- ease-in-cubic
+- ease-out-cubic
+- ease-in-out-cubic
+- ease-in-quart
+- ease-out-quart
+- ease-in-out-quart
+- ease-elastic
+- ease-bounce
+- ease-in-expo
+- ease-out-expo
+- ease-in-out-expo
+- ease-in-circ
+- ease-out-circ
+- ease-in-out-circ
+
 </details>
-</td>
-</tr>
-</table>
-<h3 align="center">🔄 3D ANIMATION</h3>
+
+### 🔄 3D ANIMATION
+
+```html
 <div data-viks="3D">
     <h2>Examples</h2>
     <p>Examples</p>
 </div>
+```
 
-<h3 align="center">🔄 NUMBER ANIMATION</h3>
+### 🔄 NUMBER ANIMATION
+
+```html
 <span data-viks="type-nbr duration-1000 fps-120">1000</span>
 <span data-viks="type-nbr">1000</span>
-
 <span data-viks="type-nbr duration-2000 fps-60 bottom-off">2000</span>
+```
 
-<h3 align="center">📢 EVENT CALLBACK</h3>
+### 📢 EVENT CALLBACK
+
+```javascript
 // 1. Initialize the library first
 VIKS.init();
 
@@ -331,110 +301,112 @@ const scrollHandler = (event) => {
 VIKS.on('onScroll', scrollHandler);
 // Later...
 VIKS.off('onScroll', scrollHandler);
+```
 
-<hr style="height: 3px; background: linear-gradient(90deg, rgba(0,0,0,0), aqua, rgba(0,0,0,0));">
-<h2 align="center">🎭 ANIMATION TYPES</h2>
+---
+
+## 🎭 ANIMATION TYPES
+
 <div class="animations-container">
-<div class="animation-group">
-<h3 id="bounce-animation">Bounce Animation</h3>
-<ul>
-<li><code>bounce</code></li>
-<li><code>bounce-up</code></li>
-<li><code>bounce-down</code></li>
-<li><code>bounce-left</code></li>
-<li><code>bounce-right</code></li>
-</ul>
+
+### <span id="bounce-animation">Bounce Animation</span>
+- `bounce`
+- `bounce-up`
+- `bounce-down`
+- `bounce-left`
+- `bounce-right`
+
+### <span id="fade-animations">Fade Animations</span>
+- `fade`
+- `fade-up`
+- `fade-down`
+- `fade-left`
+- `fade-right`
+- `fade-up-right`
+- `fade-up-left`
+- `fade-down-right`
+- `fade-down-left`
+
+### <span id="flip-animations">Flip Animations</span>
+- `flip-up`
+- `flip-down`
+- `flip-left`
+- `flip-right`
+
+### <span id="slide-animations">Slide Animations</span>
+- `slide-up`
+- `slide-down`
+- `slide-left`
+- `slide-right`
+
+### <span id="shake-animation">Shake Animation</span>
+- `shake`
+- `shake-horizontal`
+- `shake-vertical`
+
+### <span id="spin-animation">Spin Animation</span>
+- `spin`
+- `spin-bounce`
+- `spin-slow`
+- `spin-fast`
+- `spin-reverse`
+
+### <span id="zoom-animations">Zoom Animations</span>
+- `zoom-in`
+- `zoom-in-up`
+- `zoom-in-down`
+- `zoom-in-left`
+- `zoom-in-right`
+- `zoom-out`
+- `zoom-out-up`
+- `zoom-out-down`
+- `zoom-out-left`
+- `zoom-out-right`
+
 </div>
-<div class="animation-group">
-<h3 id="fade-animations">Fade Animations</h3>
-<ul>
-<li><code>fade</code></li>
-<li><code>fade-up</code></li>
-<li><code>fade-down</code></li>
-<li><code>fade-left</code></li>
-<li><code>fade-right</code></li>
-<li><code>fade-up-right</code></li>
-<li><code>fade-up-left</code></li>
-<li><code>fade-down-right</code></li>
-<li><code>fade-down-left</code></li>
-</ul>
-</div>
-<div class="animation-group">
-<h3 id="flip-animations">Flip Animations</h3>
-<ul>
-<li><code>flip-up</code></li>
-<li><code>flip-down</code></li>
-<li><code>flip-left</code></li>
-<li><code>flip-right</code></li>
-</ul>
-</div>
-<div class="animation-group">
-<h3 id="slide-animations">Slide Animations</h3>
-<ul>
-<li><code>slide-up</code></li>
-<li><code>slide-down</code></li>
-<li><code>slide-left</code></li>
-<li><code>slide-right</code></li>
-</ul>
-</div>
-<div class="animation-group">
-<h3 id="shake-animation">Shake Animation</h3>
-<ul>
-<li><code>shake</code></li>
-<li><code>shake-horizontal</code></li>
-<li><code>shake-vertical</code></li>
-</ul>
-</div>
-<div class="animation-group">
-<h3 id="spin-animation">Spin Animation</h3>
-<ul>
-<li><code>spin</code></li>
-<li><code>spin-bounce</code></li>
-<li><code>spin-slow</code></li>
-<li><code>spin-fast</code></li>
-<li><code>spin-reverse</code></li>
-</ul>
-</div>
-<div class="animation-group">
-<h3 id="zoom-animations">Zoom Animations</h3>
-<ul>
-<li><code>zoom-in</code></li>
-<li><code>zoom-in-up</code></li>
-<li><code>zoom-in-down</code></li>
-<li><code>zoom-in-left</code></li>
-<li><code>zoom-in-right</code></li>
-<li><code>zoom-out</code></li>
-<li><code>zoom-out-up</code></li>
-<li><code>zoom-out-down</code></li>
-<li><code>zoom-out-left</code></li>
-<li><code>zoom-out-right</code></li>
-</ul>
-</div>
-</div>
-<hr style="height: 3px; background: linear-gradient(90deg, rgba(0,0,0,0), aqua, rgba(0,0,0,0));">
+
+---
+
 <div align="center">
-<h2>☕ SUPPORT MY WORK</h2>
+
+## ☕ SUPPORT MY WORK
+
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=200&section=header&text=Buy%20Me%20A%20Coffee&fontSize=60&fontAlignY=35&animation=twinkling&fontColor=gradient" />
-<p>
-<a href="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=white&color=aqua&width=435&lines=Support+my+work;Buy+Me+Golda+Coffee!+.☕">
-<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=white&color=aqua&width=435&lines=Support+my+work;Buy+Me+Golda+Coffee!+.☕" alt="Typing SVG">
+
+<a href="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=white&color=aqua&width=435&lines=Support+my+work;Buy+Me+Golda+Coffee!+☕">
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=white&color=aqua&width=435&lines=Support+my+work;Buy+Me+Golda+Coffee!+☕" alt="Typing SVG">
 </a>
-</p>
-<p>Say Thank You by Buying Someone a Coffee!</p>
+
+**Say Thank You by Buying Someone a Coffee!**
+
 <a href="https://ko-fi.com/viksry">
 <img src="https://storage.ko-fi.com/cdn/kofi2.png?v=3" width="200">
 </a>
-<p>Your support helps me to continue creating and maintaining projects! ✨</p>
+
+*Your support helps me to continue creating and maintaining projects! ✨*
+
 </div>
-<hr style="height: 3px; background: linear-gradient(90deg, rgba(0,0,0,0), aqua, rgba(0,0,0,0));">
-<h2 align="center">🌐 DEMO</h2>
+
+---
+
+## 🌐 DEMO
+
 <p align="center">See the full demo on the <a href="https://viksanimation.my.id">official website</a>.</p>
-<hr style="height: 3px; background: linear-gradient(90deg, rgba(0,0,0,0), aqua, rgba(0,0,0,0));">
-<h2 align="center">📄 LICENSE</h2>
+
+---
+
+## 📄 LICENSE
+
 <p align="center">This project is <a href="./LICENSE">MIT</a> licensed.</p>
-<hr style="height: 3px; background: linear-gradient(90deg, rgba(0,0,0,0), aqua, rgba(0,0,0,0));">
-<h2 align="center">🤝 CONTRIBUTING</h2>
-<p align-center">Contributions, issues, and feature requests are welcome! See <a href="./CONTRIBUTING.md">CONTRIBUTING.md</a></p>
+
+---
+
+## 🤝 CONTRIBUTING
+
+<p align="center">Contributions, issues, and feature requests are welcome! See <a href="./CONTRIBUTING.md">CONTRIBUTING.md</a></p>
+
 <div align="center">
-<p>Made with ❤️ by <a href="https://github.com/MeViksry">VIKRI AHPAD TANTOWI</a></p>
+
+*Made with ❤️ by [VIKRI AHPAD TANTOWI](https://github.com/MeViksry)*
+
 </div>
