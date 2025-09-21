@@ -46,7 +46,7 @@ const VIKS = {
       'ease-elastic': 'cubic-bezier(0.5, 0.75, 0.150, 1.650)',
       'ease-bounce': 'cubic-bezier(0.3, 2.1, 0.6, 0.8)',
     };
-    
+
     /**
      * Default Setting Viks Animation
      */
@@ -81,7 +81,7 @@ const VIKS = {
     this.initResizeObserver();
   },
 
-applyGlobalStyles() {
+  applyGlobalStyles() {
     /**
      * Create style element for global settings Viks Animation
      */
@@ -162,7 +162,7 @@ applyGlobalStyles() {
     this.observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         const element = entry.target;
-        
+
         /**
          * Check element-specific animation controls Viks Animation
          */
@@ -196,7 +196,7 @@ applyGlobalStyles() {
       element.classList.add(this.config.initClassName);
     });
   },
-  
+
   /**
    * Method to update animation settings Viks Animation
    */
@@ -205,7 +205,7 @@ applyGlobalStyles() {
       ...this.config,
       ...settings
     };
-    
+
     /**
      * Refresh all elements with new settings Viks Animation
      */
@@ -256,29 +256,14 @@ applyGlobalStyles() {
      */
     element.style.transitionDuration = `${duration}ms`;
     element.style.transitionDelay = `${delay}ms`;
-    element.style.transitionTimingFunction = easing;
-
+    
     /**
      * Get easing from data attribute or config Viks Animation
      */
     const easingAttr = element.getAttribute('data-viks');
     const easingMatch = Object.keys(this.easingMap).find(key => easingAttr?.includes(key));
     const easingValue = this.easingMap[easingMatch] || this.easingMap[easing] || easing;
-
     element.style.transitionTimingFunction = easingValue;
-
-    /**
-     * Rest of the applyAnimation logic... Viks Animation
-     */
-    requestAnimationFrame(() => {
-      element.classList.add(this.config.animatedClassName);
-    });
-
-    element.dispatchEvent(new CustomEvent('viksAnimated', {
-      bubbles: true,
-      detail: { animation: element.getAttribute('data-viks') }
-    }));
-
 
     /**
      * Handle custom animations , Viks Animation
@@ -296,11 +281,11 @@ applyGlobalStyles() {
     });
 
     /**
-     * Dispatch custom event Viks Animation 3D
+     * Dispatch custom event with the correct animation name
      */
     element.dispatchEvent(new CustomEvent('viksAnimated', {
       bubbles: true,
-      detail: { animation: element.getAttribute('data-viks') }
+      detail: { animation: this.getActiveAnimation(element) }
     }));
   },
 
@@ -326,7 +311,7 @@ applyGlobalStyles() {
     element.classList.remove(this.config.animatedClassName);
     element.dispatchEvent(new CustomEvent('viksHidden', {
       bubbles: true,
-      detail: { animation: element.getAttribute('data-viks') }
+      detail: { animation: this.getActiveAnimation(element) }
     }));
   },
 
@@ -350,6 +335,27 @@ applyGlobalStyles() {
       this.removeAnimation(element);
     }
   },
+
+    /**
+     * [NEW] Helper to get the name of the active animation based on the screen size Update 1.0.7 Date 22 Sep 2025
+     */
+    getActiveAnimation(element) {
+        const width = window.innerWidth;
+        const desktopAnim = element.getAttribute('data-viks-desktop');
+        const tabletAnim = element.getAttribute('data-viks-tablet');
+        const mobileAnim = element.getAttribute('data-viks-mobile');
+
+        if (width >= 1024 && desktopAnim) {
+            return desktopAnim;
+        }
+        if (width >= 768 && width < 1024 && tabletAnim) {
+            return tabletAnim;
+        }
+        if (width < 768 && mobileAnim) {
+            return mobileAnim;
+        }
+        return element.getAttribute('data-viks');
+    },
 
   getDelay(element) {
     return parseInt(element.getAttribute('data-viks-delay')) || 
