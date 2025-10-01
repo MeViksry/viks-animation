@@ -80,15 +80,6 @@
 [data-viks*="ease-bounce"] { transition-timing-function: var(--viks-ease-bounce); }
 
 
-/* Reset & Base Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-  scroll-behavior: smooth;
-}
-
 html, body {
   width: 100%;
   height: 100%;
