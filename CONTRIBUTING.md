@@ -29,6 +29,7 @@ By participating in this project, you are expected to uphold our Code of Conduct
    - Bug Fix: `fix/description`
    - Documentation: `docs/description`
    - Performance: `perf/description`
+   - Animation: `animation/new-animation-name`
 
 2. **Before Submitting PR**
    - Update README.md with details of changes (if needed)
@@ -36,6 +37,8 @@ By participating in this project, you are expected to uphold our Code of Conduct
    - Add or update tests
    - Ensure all tests pass
    - Update version numbers following [SemVer](http://semver.org/)
+   - Test on multiple browsers (Chrome, Firefox, Safari, Edge)
+   - Verify responsive behavior on different screen sizes
 
 3. **PR Template**
    ```markdown
@@ -45,8 +48,10 @@ By participating in this project, you are expected to uphold our Code of Conduct
    ## Type of Change
    - [ ] Bug fix
    - [ ] New feature
+   - [ ] New animation
    - [ ] Breaking change
    - [ ] Documentation update
+   - [ ] Performance improvement
 
    ## Checklist
    - [ ] My code follows the style guidelines
@@ -55,6 +60,8 @@ By participating in this project, you are expected to uphold our Code of Conduct
    - [ ] I have updated the documentation
    - [ ] I have added tests
    - [ ] All tests pass
+   - [ ] I have tested on multiple browsers
+   - [ ] Responsive behavior works correctly
    ```
 
 ## 📝 Coding Standards
@@ -65,7 +72,9 @@ By participating in this project, you are expected to uphold our Code of Conduct
 - Follow Prettier configuration
 - Maximum line length: 100 characters
 - Use meaningful variable names
-- Document complex logic
+- Document complex logic with JSDoc comments
+- Avoid using `localStorage` or `sessionStorage`
+- Use `const` for immutable values, `let` for mutable values
 
 ```javascript
 // ✅ Good
@@ -73,6 +82,17 @@ const calculateOffset = (element, options) => {
   const { offset = 0 } = options;
   return element.getBoundingClientRect().top + offset;
 };
+
+/**
+ * Gets animation delay from element
+ * @param {HTMLElement} element - Target element
+ * @returns {number} Delay value in milliseconds
+ */
+getDelay(element) {
+  return parseInt(element.getAttribute('data-viks-delay')) || 
+         this.getAttributeFromString(element.getAttribute('data-viks'), 'delay-') || 
+         this.config.delay;
+}
 
 // ❌ Bad
 const calc = (e, o) => {
@@ -90,10 +110,38 @@ const calc = (e, o) => {
   transition: all 0.3s ease;
 }
 
+[data-viks*="fade-up"] {
+  transform: translate3d(0, 100%, 0);
+}
+
 /* ❌ Bad */
 .anim {
   transform:translateY(20px);opacity:0;
   transition: all .3s ease
+}
+```
+
+### Animation Guidelines
+
+When creating new animations:
+
+1. **Naming Convention**: Use descriptive names (e.g., `fade-up`, `zoom-in-left`)
+2. **Performance**: Use `transform` and `opacity` for better performance
+3. **Use `translate3d`**: Enables hardware acceleration
+4. **Add `will-change`**: For properties that will animate
+5. **Include Responsive Variants**: Add desktop, tablet, and mobile versions if needed
+6. **Test Thoroughly**: Verify on different browsers and devices
+
+```css
+/* Example new animation */
+[data-viks*="rotate-in"] {
+  opacity: 0;
+  transform: rotate(-180deg) scale(0.5);
+}
+
+[data-viks*="rotate-in"].viks-animate {
+  opacity: 1;
+  transform: rotate(0) scale(1);
 }
 ```
 
@@ -109,35 +157,51 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 [optional footer]
 ```
 
-Types:
-- `feat`: New feature
+**Types:**
+- `feat`: New feature or animation
 - `fix`: Bug fix
-- `docs`: Documentation
-- `style`: Code style
+- `docs`: Documentation only changes
+- `style`: Code style (formatting, missing semicolons, etc.)
 - `refactor`: Code refactoring
-- `perf`: Performance
-- `test`: Testing
-- `chore`: Maintenance
+- `perf`: Performance improvements
+- `test`: Adding or updating tests
+- `chore`: Maintenance tasks
 
-Example:
+**Scopes:**
+- `core`: Core VIKS functionality
+- `animations`: Animation-related changes
+- `3d`: Viks3D-related changes
+- `number`: VIKSNumber-related changes
+- `events`: Event system changes
+- `observer`: Intersection/Mutation Observer changes
+
+**Examples:**
 ```
-feat(animations): add new zoom-rotate animation
+feat(animations): add rotate-bounce animation
 
-- Added new animation combining zoom and rotation
-- Updated documentation
-- Added tests
+- Added new animation combining rotation and bounce
+- Updated documentation with usage examples
+- Added tests for new animation
 
 Closes #123
 ```
 
+```
+fix(observer): correct threshold calculation for mobile devices
+
+- Fixed intersection observer threshold on mobile
+- Improved scroll detection accuracy
+- Added unit tests
+
+Fixes #456
+```
+
 ## 📚 Documentation
 
-- Update JSDoc comments for all public methods
-- Keep README.md up to date
-- Update animation catalog
-- Add examples for new features
+### JSDoc Requirements
 
-JSDoc Example:
+All public methods must have JSDoc comments:
+
 ```javascript
 /**
  * Initializes animation for an element
@@ -145,13 +209,27 @@ JSDoc Example:
  * @param {Object} options - Animation options
  * @param {number} [options.duration=1000] - Animation duration in ms
  * @param {string} [options.easing='ease'] - Animation timing function
+ * @param {boolean} [options.once=false] - Animate only once
  * @returns {void}
+ * @fires VIKS#beforeInit
+ * @fires VIKS#afterInit
  */
 ```
+
+### Documentation Updates
+
+When adding new features:
+
+1. Update README.md with usage examples
+2. Add animation to the animation catalog
+3. Update API documentation
+4. Include code examples
+5. Add screenshots or GIFs if applicable
 
 ## 🧪 Testing Guidelines
 
 ### Test Structure
+
 Tests are organized into main categories:
 
 1. **Initialization Tests**
@@ -159,12 +237,9 @@ Tests are organized into main categories:
 describe('VIKS Animation', () => {
   it('should initialize with default options', () => {
     const element = document.createElement('div');
-    const viks = new VIKS(element);
-    expect(viks.options).toEqual({
-      duration: 1000,
-      easing: 'ease',
-      offset: 0
-    });
+    const viks = VIKS.init();
+    expect(viks.config).toHaveProperty('duration', 400);
+    expect(viks.config).toHaveProperty('easing', 'ease');
   });
 });
 ```
@@ -175,27 +250,62 @@ describe('Animation Parameters', () => {
   it('should get correct delay value', () => {
     const element = document.createElement('div');
     element.setAttribute('data-viks', 'fade-up delay-500');
-    container.appendChild(element);
+    document.body.appendChild(element);
     
     const viks = VIKS.init();
     const delay = viks.getDelay(element);
-    expect(delay).toBe('500');
+    expect(delay).toBe(500);
+  });
+});
+```
+
+3. **Responsive Animation Tests**
+```javascript
+describe('Responsive Animations', () => {
+  it('should apply desktop animation on large screens', () => {
+    global.innerWidth = 1200;
+    const element = document.createElement('div');
+    element.setAttribute('data-viks-desktop', 'fade-up');
+    
+    const animation = VIKS.getActiveAnimation(element);
+    expect(animation).toBe('fade-up');
+  });
+});
+```
+
+4. **Event System Tests**
+```javascript
+describe('Event System', () => {
+  it('should trigger afterAnimate event', (done) => {
+    const element = document.createElement('div');
+    element.setAttribute('data-viks', 'fade-up');
+    
+    VIKS.on('afterAnimate', (event) => {
+      expect(event.element).toBe(element);
+      done();
+    });
+    
+    VIKS.applyAnimation(element);
   });
 });
 ```
 
 ### Testing Requirements
 
-- Minimum 80% coverage for new code
+- **Minimum 80% coverage** for new code
 - All animation types must have tests
-- Test browser compatibility
+- Test browser compatibility features
 - Include tests for:
-  - Animation parameters
-  - Element detection
-  - Scroll behavior
+  - Animation parameters (delay, duration, easing)
+  - Element detection and initialization
+  - Scroll behavior and triggers
   - Animation application/removal
-  - Window events
+  - Window events (resize, scroll)
   - Intersection Observer functionality
+  - Event system (on, off, _fire)
+  - Responsive breakpoints (desktop, tablet, mobile)
+  - VIKSNumber animations
+  - Viks3D interactions
 
 ### Running Tests
 
@@ -207,23 +317,98 @@ npm test
 npm test -- --coverage
 
 # Run specific test file
-npm test -- path/to/test-file.test.js
+npm test -- viks.test.js
 
 # Run tests in watch mode
 npm test -- --watch
+
+# Run tests for specific component
+npm test -- number.test.js
+npm test -- 3d.test.js
+```
+
+## 🎨 Adding New Animations
+
+To add a new animation to VIKS:
+
+1. **Add CSS in viks.css**:
+```css
+[data-viks*="your-animation"] {
+  opacity: 0;
+  transform: /* your initial transform */;
+}
+
+[data-viks*="your-animation"].viks-animate {
+  opacity: 1;
+  transform: /* your final transform */;
+}
+```
+
+2. **Add Responsive Variants** (if needed):
+```css
+@media (min-width: 1024px) {
+  [data-viks-desktop*="your-animation"] { /* desktop styles */ }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  [data-viks-tablet*="your-animation"] { /* tablet styles */ }
+}
+
+@media (max-width: 767px) {
+  [data-viks-mobile*="your-animation"] { /* mobile styles */ }
+}
+```
+
+3. **Add Tests**:
+```javascript
+describe('Your Animation', () => {
+  it('should apply your-animation correctly', () => {
+    // test implementation
+  });
+});
+```
+
+4. **Update Documentation**:
+   - Add to animation catalog in README.md
+   - Include usage example
+   - Add to migration guide if it's a breaking change
+
+## 🏗️ Project Structure
+
+```
+viks-animation/
+├── src/
+│   ├── viks.js          # Core animation library
+│   └── viks.css         # Animation styles
+├── tests/
+│   ├── viks.test.js     # Core tests
+│   ├── number.test.js   # VIKSNumber tests
+│   └── 3d.test.js       # Viks3D tests
+├── docs/
+│   └── api.md           # API documentation
+├── examples/
+│   └── index.html       # Usage examples
+├── CONTRIBUTING.md
+├── README.md
+└── package.json
 ```
 
 ## 👥 Community
 
 ### Getting Help
-- GitHub Issues
-- Discord Community
-- Stack Overflow Tag: `viks-animation`
+
+- **GitHub Issues**: Bug reports and feature requests
+- **Discord Community**: Real-time discussions
+- **Stack Overflow**: Tag your questions with `viks-animation`
+- **Email**: support@viksanimation.my.id
 
 ### Regular Contributors
+
+Active contributors get:
 - Access to development meetings
 - Mentioned in README.md
 - Early access to new features
+- Voting rights on major decisions
 
 ## 🏆 Recognition
 
@@ -231,45 +416,167 @@ All contributors will be:
 - Listed in CONTRIBUTORS.md
 - Mentioned in release notes
 - Credited in documentation
+- Added to the contributors page on the website
 
 ## 📋 Issue Templates
 
 ### Bug Report Template
+
 ```markdown
 **Description:**
-[Clear description of the bug]
+A clear description of the bug
 
 **Steps to Reproduce:**
-1. [First Step]
-2. [Second Step]
-3. [And so on...]
+1. Initialize VIKS with config...
+2. Add element with data-viks="..."
+3. Scroll to element
+4. Observe behavior
 
 **Expected Behavior:**
-[What you expected to happen]
+Element should animate smoothly
 
 **Actual Behavior:**
-[What actually happened]
+Element flickers or doesn't animate
 
 **Environment:**
-- Browser:
-- OS:
-- VIKS Version:
+- Browser: Chrome 120
+- OS: Windows 11
+- VIKS Version: 1.0.7
+- Screen Size: 1920x1080
+
+**Code Sample:**
+```html
+<div data-viks="fade-up" data-viks-duration="1000">
+  Content
+</div>
+```
+
+**Additional Context:**
+Add any other context about the problem here.
 ```
 
 ### Feature Request Template
+
 ```markdown
 **Feature Description:**
-[Describe the feature]
+Add zoom-rotate-3d animation
 
 **Use Case:**
-[Why is this feature needed?]
+I need a combined zoom and rotate animation for product showcases that works on mobile and desktop differently.
 
 **Proposed Solution:**
-[Your implementation ideas]
+```css
+[data-viks*="zoom-rotate-3d"] {
+  transform: scale(0.5) rotateY(-180deg);
+}
+```
 
 **Alternatives Considered:**
-[Other solutions you've considered]
+- Using separate zoom and rotate animations
+- Creating custom animation with keyframes
+
+**Additional Context:**
+This would be useful for e-commerce sites showcasing 3D products.
 ```
+
+### Animation Request Template
+
+```markdown
+**Animation Name:**
+bounce-rotate
+
+**Animation Type:**
+- [ ] Fade
+- [ ] Slide
+- [ ] Zoom
+- [x] Bounce
+- [x] Rotate
+- [ ] Flip
+- [ ] Custom
+
+**Description:**
+An animation that combines bouncing motion with rotation
+
+**Visual Reference:**
+[Link to video/GIF showing desired effect]
+
+**Use Case:**
+Attention-grabbing animation for call-to-action buttons
+
+**Initial Transform:**
+```css
+transform: scale(0.5) rotate(-45deg);
+```
+
+**Final Transform:**
+```css
+transform: scale(1) rotate(0);
+```
+```
+
+## 🚀 Development Workflow
+
+1. **Fork the repository**
+2. **Clone your fork**
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/viks-animation.git
+   cd viks-animation
+   ```
+
+3. **Create a feature branch**
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+4. **Make your changes**
+   - Write code
+   - Add tests
+   - Update documentation
+
+5. **Test your changes**
+   ```bash
+   npm test
+   npm run lint
+   ```
+
+6. **Commit your changes**
+   ```bash
+   git add .
+   git commit -m "feat(animations): add bounce-rotate animation"
+   ```
+
+7. **Push to your fork**
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+8. **Create a Pull Request**
+   - Go to the original repository
+   - Click "New Pull Request"
+   - Select your branch
+   - Fill out the PR template
+   - Submit for review
+
+## 📌 Code Review Process
+
+1. **Automated Checks**: CI/CD will run tests and linting
+2. **Maintainer Review**: Core team reviews code quality and design
+3. **Community Feedback**: Other contributors may provide input
+4. **Approval**: At least one maintainer approval required
+5. **Merge**: Maintainer will merge after approval
+
+## 🔒 Security
+
+If you discover a security vulnerability:
+
+1. **DO NOT** open a public issue
+2. Email security concerns to: security@viksanimation.my.id
+3. Include detailed information about the vulnerability
+4. Allow time for the team to address the issue
+
+## 📄 License
+
+By contributing to VIKS Animation Library, you agree that your contributions will be licensed under the MIT License.
 
 ---
 
@@ -277,6 +584,8 @@ All contributors will be:
 
 [![Questions](https://img.shields.io/badge/Have_Questions%3F-Ask_Away!-00FFFF?style=for-the-badge&logoColor=black)](https://github.com/Vixsry/viks-animation/issues)
 
-Thank you for contributing to VIKS Animation Library! 🎉
+**Thank you for contributing to VIKS Animation Library! 🎉**
+
+Made with ❤️ by the VIKS community
 
 </div>
